@@ -1,74 +1,72 @@
-Name:THENMOZHI P<br>
-Reg.No:23005024
+## Developed by: thenmozhi
+## RegisterNumber:  23005024
+# Experiment 02 Implementation of combinational logic
+Implementation of combinational logic gates
+ 
+## AIM:
+To implement the given logic function verify its operation in Quartus using Verilog programming.
+ F1= A’B’C’D’+AC’D’+B’CD’+A’BCD+BC’D
+F2=xy’z+x’y’z+w’xy+wx’y+wxy
 
-# Exp-03 Implementation of Half Adder and Full Adder circuit
+## Equipments Required:
+## Hardware – PCs, Cyclone II , USB flasher
+## Software – Quartus prime
 
-# Implementation of Half Adder and Full Adder circuit
-### AIM:
-To design a half adder and full adder circuit and verify its truth table in Quartus using Verilog programming.
+## Theory:
+A combinational circuit is a circuit in which the output depends on the present combination of inputs. Combinational circuits are made up of logic gates. The output of each logic gate is determined by its logic function. Combinational circuits can be made using various logic gates, such as AND gates, OR gates, and NOT gates.
+## Procedure:
+Create a New Project:
+Open Quartus and create a new project by selecting "File" > "New Project Wizard."Follow the wizard's instructions to set up your project, including specifying the project name, location, and target device (FPGA).
 
-### Equipments Required:
-Hardware – PCs, Cyclone II , USB flasher
-Software – Quartus prime
-Theory
-Adders are digital circuits that carry out addition of numbers.
+Create a New Design File: *Once the project is created, right-click on the project name in the Project Navigator and select "Add New File." * * Choose "Verilog HDL File" or "VHDL File," depending on your chosen hardware description language.
 
-### Half Adder
-Half adder is a combinational circuit that performs simple addition of two binary numbers. The input variables designate the augend and addend bits; the output variables produce the sum and carry. It is necessary to specify two output variables because the result may consist of two binary digits.
+Write the Combinational Logic Code:
 
-Sum = A’B+AB’ =A ⊕ B Carry = AB
+* Open the newly created Verilog or VHDL file and write the code for your combinational logic.
 
-![image](https://user-images.githubusercontent.com/36288975/163552156-a13e5a56-c638-4110-97d9-8896907c8d25.png)
+4.Compile the Project:
 
-#### Figure -01 HALF ADDER 
+* To compile the project, click on "Processing" > "Start Compilation" in the menu. *Quartus will analyze your code, synthesize it into a netlist, and perform optimizations based on your target FPGA device.
+
+5.Analyze and Fix Errors:
+
+* If there are any errors or warnings during the compilation process, Quartus will display them in the Messages window.
+
+6.Verification:
+
+* Click on "File" > "New" > "Verification/Debugging Files" > "University Program VWF".
+
+* Once Waveform is created Right Click on the Input/Output Panel > " Insert Node or Bus" > Click on Node Finder > Click On "List" > Select All.
+
+* Give the Input Combinations according to the Truth Table and then simulate the Output Waveform.
+
+## Program:
+module experiment2(A,B,C,D,F1);
+input A,B,C,D;
+
+output F1;
+
+wire x1,x2,x3,x4,x5;
 
 
-## Half Adder
+assign x1=(~A)&(~B)&(~C)&(~C);
 
-module exp3(sum, carry,a,b); 
-input a,b; 
-output sum,carry; 
-xor sum1(sum,a,b); 
-and carry1(carry,a,b); 
+assign x2=(A)&(~D)&(~D);
+
+assign x3=(~B)&(C)&( ~D);
+
+assign x4=(~A)&(B)&(C)&(D);
+
+assign x5=(B)&(~C)&(~D);
+
+assign F1=x1|x2|x3|x4|x5;
 endmodule
 
-## Truth Table
-![WhatsApp Image 2023-11-27 at 16 05 12_b1129c8b](https://github.com/Naveen1825/Exp-02-Implementation-of-Half-Adder-and-Full-Adder-circuit/assets/138969868/d47375b8-4d29-4079-baff-57327446b4f2)
-## RTL
-![WhatsApp Image 2023-11-27 at 16 05 00_81ff270e](https://github.com/Naveen1825/Exp-02-Implementation-of-Half-Adder-and-Full-Adder-circuit/assets/138969868/48c80aac-3fb3-4f7b-b48c-03f4ff534cc7)
-
-![WhatsApp Image 2023-11-27 at 16 05 07_2267e9af](https://github.com/Naveen1825/Exp-02-Implementation-of-Half-Adder-and-Full-Adder-circuit/assets/138969868/d51e1b0b-00ea-42d7-9e80-edca445d6ed1)
-
-### Full Adder
-Full adder is a digital circuit used to calculate the sum of three binary bits. It consists of three inputs and two outputs. Two of the input variables, denoted by A and B, represent the two significant bits to be added. The third input, Cin, represents the carry from the previous lower significant position. Two outputs are necessary because the arithmetic sum of three binary digits ranges in value from 0 to 3, and binary 2 or 3 needs two digits. The two outputs are sum and carry.
-
-Sum =A’B’Cin + A’BCin’ + ABCin + AB’Cin’ = A ⊕ B ⊕ Cin Carry = AB + ACin + BCin
-
- 
-![image](https://user-images.githubusercontent.com/36288975/163552057-b3547877-6d07-45b4-b7e0-bcfebfad9e1d.png)
-#### Figure -02 FULL ADDER 
-
-### Procedure
-
-Connect the supply (+5V) to the circuit
-Switch ON the main switch
-If the output is 1, then the led glows.
-
-
-## Full Adder
-
-module fulladder(a,b,c,sum,carry);
-input a,b,c;
-output sum,carry;
-xor(sum,a,b,c);
-assign carry=a&b | b&c | a&c;
-endmodule
- 
-## Full Adder Truth Table
-![WhatsApp Image 2023-11-27 at 16 05 33_636a0a53](https://github.com/Naveen1825/Exp-02-Implementation-of-Half-Adder-and-Full-Adder-circuit/assets/138969868/f54f679d-7b57-483a-a821-fbde70d4d0b1)
-
-## RTL
-![WhatsApp Image 2023-11-27 at 16 05 18_bae45d76](https://github.com/Naveen1825/Exp-02-Implementation-of-Half-Adder-and-Full-Adder-circuit/assets/138969868/7fb0d691-46f6-4f1e-b95d-1e77d47725ac)
-![WhatsApp Image 2023-11-27 at 16 05 28_077dfe17](https://github.com/Naveen1825/Exp-02-Implementation-of-Half-Adder-and-Full-Adder-circuit/assets/138969868/421f82fe-551b-4fde-af0d-651d17ca8882)
-## Result
-Thus the given logic function verified using verilog programming
+## RTL realization
+![Screenshot 2023-11-26 173053](https://github.com/mounika2005/Experiment--02-Implementation-of-combinational-logic-/assets/145633112/21e1ae21-bf4e-4cf6-990c-04303e40d522)
+# Truth table:
+![Screenshot 2023-11-26 173233](https://github.com/mounika2005/Experiment--02-Implementation-of-combinational-logic-/assets/145633112/c6468b54-7ec8-4a38-b959-64b7df34c7e3)
+# Timing Diagram:
+![Screenshot 2023-11-26 173342](https://github.com/mounika2005/Experiment--02-Implementation-of-combinational-logic-/assets/145633112/4640dcf3-91e4-42c8-bf85-e0d7d05d2b63)
+## Result:
+Thus the given logic functions are implemented using  and their operations are verified using Verilog programming.
